@@ -20,10 +20,10 @@ pipeline {
             }
         }
         stage('npm install and test') {
-            steps {
-                environment {
-                    PORT=8083
+            environment {
+                    PORT = 8083
                 }
+            steps {
                 echo 'running npm install'
                 sh 'npm install'
                 echo 'running tests'
