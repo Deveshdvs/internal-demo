@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo "build id = v2.${env.BUILD_ID}"
                 echo 'downloading the source code from git'
-                git branch: 'dev',
+                git branch: 'master',
                     url: 'https://github.com/Deveshdvs/internal-demo.git'
                 sh 'ls -a'
                 
@@ -38,7 +38,7 @@ pipeline {
                 echo "connect to cluster"
                 sh 'gcloud container clusters get-credentials cluster-demo --zone asia-east1-a --project dtc-user13'
                 echo "setting new image"
-                sh "kubectl set image deployments/events-data events-data=gcr.io/dtc-user13/internal:v2.${env.BUILD_ID} --record --namespace=demo"
+                sh "kubectl set image deployments/events-data events-data=gcr.io/dtc-user13/internal:v2.${env.BUILD_ID} --record"
             }
         }
     }
